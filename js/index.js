@@ -22,11 +22,30 @@ function update() {
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canv.width, canv.height);
 
-    // draw ship
-    ctx.strokeStyle
-
+    // draw triangular ship
+    ctx.strokeStyle = "white";
+    ctx.lineWidth = SHIP_SIZE / 20;
+    ctx.beginPath();
+    ctx.moveTo( // nose of the ship
+        ship.x + 4 / 3 * ship.r * Math.cos(ship.a),
+        ship.y - 4 / 3 * ship.r * Math.sin(ship.a)
+    );
+    ctx.lineTo(  // rear left
+        ship.x - ship.r * (2 / 3 * Math.cos(ship.a) + Math.sin(ship.a)),
+        ship.y + ship.r * (2 / 3 * Math.sin(ship.a) - Math.cos(ship.a))
+    );
+    ctx.lineTo(  // rear right
+    ship.x - ship.r * (2 / 3 * Math.cos(ship.a) - Math.sin(ship.a)),
+    ship.y + ship.r * (2 / 3 * Math.sin(ship.a) + Math.cos(ship.a))
+    );
+    ctx.closePath();
+    ctx.stroke();
 
     // rotate ship
 
     // move ship 
+
+    // center dot
+    ctx.fillStyle = "red";
+    ctx.fillRect(ship.x - 1, ship.y - 1, 2, 2);
 }
